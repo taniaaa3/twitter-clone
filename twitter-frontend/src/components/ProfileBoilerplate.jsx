@@ -16,7 +16,7 @@ const ProfileBoilerplate = (props) => {
   const [followingExists, setFollowingExists] = useState([])
   const params = useParams();
   const fetchTweetDetails = async () => {
-    await axios.get(`http://192.168.1.111:3003/api/user/${props.profile._id}/tweets`,).then((res) => {
+    await axios.get(`https://twitter-clone-llkn.onrender.com/api/user/${props.profile._id}/tweets`,).then((res) => {
       setTweets(res.data.tweets);
       setIsLoading(false);
     }).catch((err) => {
@@ -25,14 +25,14 @@ const ProfileBoilerplate = (props) => {
   }
   const like_dislike = async (id) => {
     try {
-      await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/like`, "", {
+      await axios.post(`https://twitter-clone-llkn.onrender.com/api/tweet/${id}/like`, "", {
         headers: { "Authorization": `Bearer ${token}` }
       }).then((res) => {
         toast(`🦄${res.data.msg}`);
         console.log(res);
       }).catch(async (err) => {
         if (err.response.data.msg == "Cannot like already liked tweet") {
-          await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/dislike`, "", {
+          await axios.post(`https://twitter-clone-llkn.onrender.com/api/tweet/${id}/dislike`, "", {
             headers: { "Authorization": `Bearer ${token}` }
           }).then((res) => {
             toast(`🦄${res.data.msg}`);
@@ -48,7 +48,7 @@ const ProfileBoilerplate = (props) => {
   }
   const retweet = async (id) => {
     try {
-      await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/retweet`, {}, {
+      await axios.post(`https://twitter-clone-llkn.onrender.com/api/tweet/${id}/retweet`, {}, {
         headers: { "Authorization": `Bearer ${token}` }
       }).then((res) => {
         toast(`🦄${res.data.msg}`, {
@@ -64,7 +64,7 @@ const ProfileBoilerplate = (props) => {
   const deleteTweet = async (tweet) => {
     try {
       if (tweet.tweetedBy._id == user._id) {
-        await axios.delete(`http://192.168.1.111:3003/api/tweet/${tweet._id}`, {
+        await axios.delete(`https://twitter-clone-llkn.onrender.com/api/tweet/${tweet._id}`, {
           headers: { "Authorization": `Bearer ${token}` }
         }).then((res) => {
           console.log(res);
@@ -84,7 +84,7 @@ const ProfileBoilerplate = (props) => {
   const follow_unFollow = async () => {
     console.log(props.profile);
     try {
-      await axios.post(`http://192.168.1.111:3003/api/user/${params.id}/follow`, '', {
+      await axios.post(`https://twitter-clone-llkn.onrender.com/api/user/${params.id}/follow`, '', {
         headers: { "Authorization": `Bearer ${token}` }
       }).then((res) => {
         console.log(res.data);
@@ -92,7 +92,7 @@ const ProfileBoilerplate = (props) => {
       }).catch((err) => {
         console.log(err);
         if (err.response.data.msg == "User already followed") {
-          axios.post(`http://192.168.1.111:3003/api/user/${params.id}/unfollow`, '', {
+          axios.post(`https://twitter-clone-llkn.onrender.com/api/user/${params.id}/unfollow`, '', {
             headers: { "Authorization": `Bearer ${token}` }
           }).then((res) => {
             console.log(res.data);

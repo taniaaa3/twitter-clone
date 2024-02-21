@@ -16,7 +16,7 @@ const EditProfileModal = (props) => {
   const editProfile = async(e)=>{
         e.preventDefault();
         try {
-            await axios.put(`http://192.168.1.111:3003/api/user/${props.id}`,details,{
+            await axios.put(`https://twitter-clone-llkn.onrender.com/api/user/${props.id}`,details,{
                 headers: {"Authorization":`Bearer ${token}`}
             }).then((res)=>{
                 console.log(res);

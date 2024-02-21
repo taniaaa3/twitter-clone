@@ -16,7 +16,7 @@ const UploadPFPModal = (props) => {
     const formData = new FormData();
     formData.append("pfp", image);
     try {
-      await axios.post(`http://192.168.1.111:3003/api/user/${props.id}/uploadProfilePic`, formData, {
+      await axios.post(`https://twitter-clone-llkn.onrender.com/api/user/${props.id}/uploadProfilePic`, formData, {
         headers: {"Authorization":`Bearer ${token}`}
       }).then((res) => {
         console.log(res);

@@ -18,7 +18,7 @@ const Register = () => {
         const {name, username, email, password} = data;
         try {
             if(name && username && email && password){
-                await axios.post("http://192.168.1.111:3003/api/auth/register",data).then((res)=>{
+                await axios.post("https://twitter-clone-llkn.onrender.com/api/auth/register",data).then((res)=>{
                     console.log(res);
                     setToken(res.data.token);
                     localStorage.setItem('token',res.data.token);

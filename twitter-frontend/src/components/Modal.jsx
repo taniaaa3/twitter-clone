@@ -19,7 +19,7 @@ const Modal = (props) => {
     formData.append("content", content);
     try {
       console.log(content);
-      await axios.post(`http://192.168.1.111:3003/api/tweet`, formData, {
+      await axios.post(`https://twitter-clone-llkn.onrender.com/api/tweet`, formData, {
         headers: {"Authorization":`Bearer ${token}`}
       }).then((res) => {
         console.log(res);

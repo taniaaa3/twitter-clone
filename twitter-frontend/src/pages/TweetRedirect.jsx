@@ -21,7 +21,7 @@ const TweetRedirect = () => {
     });
     let likeExists = tweet.likes.filter((me) => { return me._id == user._id });
     const fetchTweetDetails = async () => {
-        await axios.get(`http://192.168.1.111:3003/api/tweet/${params.id}`).then((res) => {
+        await axios.get(`https://twitter-clone-llkn.onrender.com/api/tweet/${params.id}`).then((res) => {
             setTweet(res.data.tweetDetails);
             setIsLoading(false);
         }).catch((err) => {
@@ -30,14 +30,14 @@ const TweetRedirect = () => {
     }
     const like_dislike = async (id) => {
         try {
-          await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/like`, "", {
+          await axios.post(`https://twitter-clone-llkn.onrender.com/api/tweet/${id}/like`, "", {
             headers: { "Authorization": `Bearer ${token}` }
           }).then((res) => {
             toast(`🦄${res.data.msg}`);
             console.log(res);
           }).catch(async (err) => {
             if (err.response.data.msg == "Cannot like already liked tweet") {
-              await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/dislike`, "", {
+              await axios.post(`https://twitter-clone-llkn.onrender.com/api/tweet/${id}/dislike`, "", {
                 headers: { "Authorization": `Bearer ${token}` }
               }).then((res)=>{
                   toast(`🦄${res.data.msg}`);
@@ -53,7 +53,7 @@ const TweetRedirect = () => {
       }
       const retweet = async (id) => {
         try {
-          await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/retweet`, {}, {
+          await axios.post(`https://twitter-clone-llkn.onrender.com/api/tweet/${id}/retweet`, {}, {
             headers: { "Authorization": `Bearer ${token}` }
           }).then((res) => {
             toast(`🦄${res.data.msg}`, {
@@ -69,7 +69,7 @@ const TweetRedirect = () => {
       const deleteTweet = async(tweet)=>{
         try {
           if(tweet.tweetedBy._id == user._id){
-              await axios.delete(`http://192.168.1.111:3003/api/tweet/${tweet._id}`,{
+              await axios.delete(`https://twitter-clone-llkn.onrender.com/api/tweet/${tweet._id}`,{
                 headers: {"Authorization": `Bearer ${token}`}
               }).then((res)=>{
                 console.log(res);

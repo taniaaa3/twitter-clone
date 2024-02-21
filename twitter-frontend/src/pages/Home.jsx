@@ -15,7 +15,7 @@ const Home = () => {
   const navigate = useNavigate();
   const fetchTweets = async () => {
     try {
-      await axios.get("http://192.168.1.111:3003/api/tweet").then((res) => {
+      await axios.get("https://twitter-clone-llkn.onrender.com/api/tweet").then((res) => {
         setTweets(res.data.tweets);
         setIsLoading(false);
       }).catch((err) => {
@@ -27,14 +27,14 @@ const Home = () => {
   }
   const like_dislike = async (id) => {
     try {
-      await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/like`, "", {
+      await axios.post(`https://twitter-clone-llkn.onrender.com/api/tweet/${id}/like`, "", {
         headers: { "Authorization": `Bearer ${token}` }
       }).then((res) => {
         toast(`🦄${res.data.msg}`);
         console.log(res);
       }).catch(async (err) => {
         if (err.response.data.msg == "Cannot like already liked tweet") {
-          await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/dislike`, "", {
+          await axios.post(`https://twitter-clone-llkn.onrender.com/api/tweet/${id}/dislike`, "", {
             headers: { "Authorization": `Bearer ${token}` }
           }).then((res) => {
             toast(`🦄${res.data.msg}`);
@@ -50,7 +50,7 @@ const Home = () => {
   }
   const retweet = async (id) => {
     try {
-      await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/retweet`, {}, {
+      await axios.post(`https://twitter-clone-llkn.onrender.com/api/tweet/${id}/retweet`, {}, {
         headers: { "Authorization": `Bearer ${token}` }
       }).then((res) => {
         toast(`🦄${res.data.msg}`, {
@@ -66,7 +66,7 @@ const Home = () => {
   const deleteTweet = async(tweet)=>{
     try {
       if(tweet.tweetedBy._id == user._id){
-          await axios.delete(`http://192.168.1.111:3003/api/tweet/${tweet._id}`,{
+          await axios.delete(`https://twitter-clone-llkn.onrender.com/api/tweet/${tweet._id}`,{
             headers: {"Authorization": `Bearer ${token}`}
           }).then((res)=>{
             console.log(res);

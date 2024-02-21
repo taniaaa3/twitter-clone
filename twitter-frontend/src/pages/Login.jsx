@@ -17,7 +17,7 @@ const Login = () => {
         console.log(data);
         try {
             if(email && password){
-                await axios.post('http://192.168.1.111:3003/api/auth/login',data).then((res)=>{
+                await axios.post('https://twitter-clone-llkn.onrender.com/api/auth/login',data).then((res)=>{
                     toast(res.data.msg);
                     setToken(res.data.token);
                     localStorage.setItem('token',res.data.token);
