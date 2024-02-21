@@ -21,7 +21,7 @@ const TweetRedirect = () => {
     });
     let likeExists = tweet.likes.filter((me) => { return me._id == user._id });
     const fetchTweetDetails = async () => {
-        await axios.get(`http://localhost:3003/api/tweet/${params.id}`).then((res) => {
+        await axios.get(`http://192.168.1.111:3003/api/tweet/${params.id}`).then((res) => {
             setTweet(res.data.tweetDetails);
             setIsLoading(false);
         }).catch((err) => {
@@ -30,14 +30,14 @@ const TweetRedirect = () => {
     }
     const like_dislike = async (id) => {
         try {
-          await axios.post(`http://localhost:3003/api/tweet/${id}/like`, "", {
+          await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/like`, "", {
             headers: { "Authorization": `Bearer ${token}` }
           }).then((res) => {
             toast(`🦄${res.data.msg}`);
             console.log(res);
           }).catch(async (err) => {
             if (err.response.data.msg == "Cannot like already liked tweet") {
-              await axios.post(`http://localhost:3003/api/tweet/${id}/dislike`, "", {
+              await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/dislike`, "", {
                 headers: { "Authorization": `Bearer ${token}` }
               }).then((res)=>{
                   toast(`🦄${res.data.msg}`);
@@ -53,7 +53,7 @@ const TweetRedirect = () => {
       }
       const retweet = async (id) => {
         try {
-          await axios.post(`http://localhost:3003/api/tweet/${id}/retweet`, {}, {
+          await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/retweet`, {}, {
             headers: { "Authorization": `Bearer ${token}` }
           }).then((res) => {
             toast(`🦄${res.data.msg}`, {
@@ -69,7 +69,7 @@ const TweetRedirect = () => {
       const deleteTweet = async(tweet)=>{
         try {
           if(tweet.tweetedBy._id == user._id){
-              await axios.delete(`http://localhost:3003/api/tweet/${tweet._id}`,{
+              await axios.delete(`http://192.168.1.111:3003/api/tweet/${tweet._id}`,{
                 headers: {"Authorization": `Bearer ${token}`}
               }).then((res)=>{
                 console.log(res);
@@ -92,7 +92,7 @@ const TweetRedirect = () => {
     })
     return (
       isLoading ? <Loader/> : 
-        <div className='h-screen w-1/2 bg-white m-1 relative overflow-x-hidden'>
+        <div className='h-screen w-5/6 sm:w-1/2 bg-white m-1 relative overflow-x-hidden'>
             <header className='flex flex-row justify-between items-center m-4'>
                 <h1 className='text-lg font-semibold'>Tweet</h1>
             </header>
@@ -102,7 +102,7 @@ const TweetRedirect = () => {
                     <div className=''>
                         <p className='font-semibold'><span className='hover:underline cursor-pointer hover:text-blue-600' onClick={()=>{navigate(tweet.tweetedBy._id == user._id ? `/user` : `/profile/${tweet.tweetedBy._id}`)}}>@{tweet.tweetedBy.username}</span> - <span className='text-gray-500'>{new Date(tweet.createdAt).toDateString()}</span>
                         {tweet.tweetedBy._id == user._id ?
-                      <span className='absolute right-5 cursor-pointer'><i className='fa fa-trash' onClick={(e)=>{e.stopPropagation(); deleteTweet(tweet)}}></i></span>
+                      <span className='absolute sm:right-5 -right-1 cursor-pointer'><i className='fa fa-trash' onClick={(e)=>{e.stopPropagation(); deleteTweet(tweet)}}></i></span>
                       : ""
                     }</p>
                         <p>{tweet.content}</p>
@@ -134,13 +134,13 @@ const TweetRedirect = () => {
             {tweet.replies.map((val)=>{
               let commentLikeExists = val.likes.filter((me) => { return me == user._id });
             return(
-            <div className='hover:bg-blue-100 border rounded-sm p-3 relative overflow-y-auto flex flex-row'>
+            <div className='hover:bg-blue-100 border rounded-sm p-3 relative overflow-y-auto word-wrap flex flex-row'>
                 <img src={val.tweetedBy.profilePicture ? `/profilePics/${val.tweetedBy.profilePicture}` : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTalURue8uREswsyHXvJ9qmw4TSZqCxIEQNjg&usqp=CAU"} alt="pfp" className='w-12 h-12 rounded-full mr-2' />
                 <div className='flex flex-col items-start justify-start'>
                     <div className=''>
                         <p className='font-semibold'><span className='hover:underline cursor-pointer hover:text-blue-600' onClick={()=>{navigate(val.tweetedBy._id == user._id ? `/user` : `/profile/${val.tweetedBy._id}`)}}>@{val.tweetedBy.username}</span> - <span className='text-gray-500'>{new Date(val.createdAt).toDateString()}</span>
                         {val.tweetedBy._id == user._id ?
-                      <span className='absolute right-5 cursor-pointer'><i className='fa fa-trash' onClick={(e)=>{e.stopPropagation(); deleteTweet(val)}}></i></span>
+                      <span className='absolute sm:right-5 -right-7 cursor-pointer'><i className='fa fa-trash' onClick={(e)=>{e.stopPropagation(); deleteTweet(val)}}></i></span>
                       : ""
                     }</p>
                         <p>{val.content}</p>

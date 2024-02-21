@@ -15,7 +15,7 @@ const CommentModal = (props) => {
     try {
       console.log(content);
       if(content){
-      await axios.post(`http://localhost:3003/api/tweet/${id}/reply`, {content}, {
+      await axios.post(`http://192.168.1.111:3003/api/tweet/${id}/reply`, {content}, {
         headers: {"Authorization":`Bearer ${token}`}
       }).then((res) => {
         console.log(res);

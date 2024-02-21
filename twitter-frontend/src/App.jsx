@@ -18,7 +18,7 @@ import User from './pages/User';
 const App = () => {
   const {token} = useAuth();
   return (
-    <div className='w-screen h-screen m-0 bg-gray-200 flex justify-center items-center'>
+    <div className='w-screen h-screen m-0 bg-gray-200 flex justify-center items-center flex-col sm:flex-row'>
     <BrowserRouter>
       <ToastContainer theme="dark"/>
       {token? 

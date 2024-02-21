@@ -19,7 +19,7 @@ const Modal = (props) => {
     formData.append("content", content);
     try {
       console.log(content);
-      await axios.post(`http://localhost:3003/api/tweet`, formData, {
+      await axios.post(`http://192.168.1.111:3003/api/tweet`, formData, {
         headers: {"Authorization":`Bearer ${token}`}
       }).then((res) => {
         console.log(res);
@@ -33,7 +33,6 @@ const Modal = (props) => {
     }
   }
   useEffect(()=>{
-      console.log(image);
       if(image){
       const reader = new FileReader();
       reader.onload = (e)=>{
@@ -92,7 +91,7 @@ const Modal = (props) => {
             {/* <!--Modal body--> */}
             <form onSubmit={createTweet}>
             <TEModalBody>
-              <textarea name="" id="" cols="50" rows="5" className="border p-2 border-2 resize-none block" onChange={(e)=>{setContent(e.target.value)}} value={content}></textarea>
+              <textarea name="" id="" cols="30" rows="5" className="border p-2 border-2 resize-none block" onChange={(e)=>{setContent(e.target.value)}} value={content}></textarea>
               <input type="file" name="tweet" accept="image/*" id="tweet" className="hidden" onChange={(e) => { setImage(e.target.files[0]) }}/>
               <label htmlFor="tweet">
                 <i className="fa fa-image my-2 text-2xl cursor-pointer"></i>

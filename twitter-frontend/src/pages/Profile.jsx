@@ -9,7 +9,7 @@ const Profile = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const fetchProfile = async()=>{
-    await axios.get(`http://localhost:3003/api/user/${params.id}`).then((res)=>{
+    await axios.get(`http://192.168.1.111:3003/api/user/${params.id}`).then((res)=>{
         setUser(res.data.user)
         setIsLoading(false);
     })

@@ -16,7 +16,7 @@ const EditProfileModal = (props) => {
   const editProfile = async(e)=>{
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:3003/api/user/${props.id}`,details,{
+            await axios.put(`http://192.168.1.111:3003/api/user/${props.id}`,details,{
                 headers: {"Authorization":`Bearer ${token}`}
             }).then((res)=>{
                 console.log(res);
@@ -34,7 +34,7 @@ const EditProfileModal = (props) => {
     <div>
       {/* <!-- Button trigger modal --> */}
       <TERipple rippleColor="white">
-        <button onClick={() => setShowModal(true)} className='px-4 py-2 border border-black m-3'>Edit</button>
+        <button onClick={() => setShowModal(true)} className='px-9 sm:px-4 py-2 border border-black m-3'>Edit</button>
       </TERipple>
 
       {/* <!-- Modal --> */}

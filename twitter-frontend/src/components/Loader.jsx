@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loader = () => {
   return (
-    <div className='h-screen w-1/2 bg-white m-1 relative flex justify-center items-center'>
+    <div className='h-screen w-5/6 sm:w-1/2 bg-white m-1 relative flex justify-center items-center'>
     <div className="py-2 text-blue-600">
       <svg className="h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
         <g>

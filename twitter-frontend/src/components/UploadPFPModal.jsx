@@ -16,7 +16,7 @@ const UploadPFPModal = (props) => {
     const formData = new FormData();
     formData.append("pfp", image);
     try {
-      await axios.post(`http://localhost:3003/api/user/${props.id}/uploadProfilePic`, formData, {
+      await axios.post(`http://192.168.1.111:3003/api/user/${props.id}/uploadProfilePic`, formData, {
         headers: {"Authorization":`Bearer ${token}`}
       }).then((res) => {
         console.log(res);
@@ -31,7 +31,6 @@ const UploadPFPModal = (props) => {
     }
   }
   useEffect(()=>{
-      console.log(image);
       if(image){
       const reader = new FileReader();
       reader.onload = (e)=>{
@@ -43,7 +42,7 @@ const UploadPFPModal = (props) => {
     <div>
       {/* <!-- Button trigger modal --> */}
       <TERipple rippleColor="white">
-        <button onClick={() => setShowModal(true)} className='text-blue-500 border border-blue-500 p-2'>Upload Profile Photo</button>
+        <button onClick={() => setShowModal(true)} className='text-blue-500 border border-blue-500 p-2 w-max'>Upload PFP</button>
       </TERipple>
 
       {/* <!-- Modal --> */}
