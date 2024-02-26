@@ -10,10 +10,11 @@ import CommentModal from '../components/CommentModal';
 
 const Home = () => {
   const { token, user } = useAuth();
-  const [tweets, setTweets] = useState([]);
+  const [tweets, setTweets] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const fetchTweets = async () => {
+    if(token && !tweets){
     try {
       await axios.get("https://twitter-clone-llkn.onrender.com/api/tweet").then((res) => {
         setTweets(res.data.tweets);
@@ -23,7 +24,7 @@ const Home = () => {
       })
     } catch (error) {
       console.log(error);
-    }
+    }}
   }
   const like_dislike = async (id) => {
     try {
