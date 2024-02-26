@@ -53,7 +53,7 @@ const Login = () => {
                         <h1 className="my-2 font-bold text-3xl">Log in</h1>
                             <input type="text" id="email" className="mx-3 my-2 border p-2 rounded-md" onChange={e => setData({...data, ["email"]:e.target.value})} placeholder="Email"/>
                             <input type="password" className="mx-3 my-2 border p-2 rounded-md" id="password" onChange={e => setData({...data, ["password"]:e.target.value})} placeholder="Password" />
-                        <button type="submit" className="w-max m-3 rounded-lg bg-black px-4 py-2 text-white" {loginLoading ? disabled : ""}>Login</button>
+                        <button type="submit" className="w-max m-3 rounded-lg bg-black px-4 py-2 text-white" {loginLoading ? "disabled" : ""}>Login</button>
                     </form>
                     <p className="my-2">Don't have an account? <span className="text-blue-700 underline"><Link to='/register'>Register here</Link></span></p>
                 </div>
